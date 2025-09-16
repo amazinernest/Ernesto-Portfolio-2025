@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spotify Connected App Case Study | Brittany Chiang</title>
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../project.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Navigation -->
+        <header>
+            <nav>
+                <a href="../index.html" class="logo">B</a>
+                <ul class="nav-links">
+                    <li><a href="../index.html#about">About</a></li>
+                    <li><a href="../index.html#experience">Experience</a></li>
+                    <li><a href="../index.html#projects">Projects</a></li>
+                    <li><a href="../index.html#writing">Writing</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <!-- Project Content -->
+        <main class="project-content">
+            <div class="project-header">
+                <div class="project-links">
+                    <a href="https://github.com" class="project-link" target="_blank" rel="noopener noreferrer">
+                        <i class="fab fa-github"></i> View Code
+                    </a>
+                    <a href="https://spotify-app.demo" class="project-link" target="_blank" rel="noopener noreferrer">
+                        <i class="fas fa-external-link-alt"></i> Live Demo
+                    </a>
+                </div>
+                <h1>Build a Spotify Connected App</h1>
+                <div class="project-meta">
+                    <div class="tech-stack">
+                        <span class="tech">React</span>
+                        <span class="tech">Express</span>
+                        <span class="tech">Spotify API</span>
+                        <span class="tech">Styled Components</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-image">
+                <img src="https://via.placeholder.com/800x450" alt="Spotify Connected App Screenshot">
+            </div>
+
+            <article>
+                <h2>Project Overview</h2>
+                <p>A web app for visualizing personalized Spotify data. View your top artists, top tracks, recently played tracks, and detailed audio information about each track. Create and save new playlists of recommended tracks based on your existing playlists and more.</p>
+
+                <h2>Problem Statement</h2>
+                <p>While Spotify provides a wealth of data about listening habits, it doesn't offer an easy way for users to visualize this data or create recommendations based on multiple factors. This project aims to solve that problem by creating an intuitive interface for exploring personal Spotify data and generating custom recommendations.</p>
+
+                <h2>Technical Implementation</h2>
+                <p>The application is built with a React frontend and an Express backend that handles authentication with the Spotify API. Here's a breakdown of the key components:</p>
+
+                <h3>Authentication Flow</h3>
+                <p>The app uses the Spotify Authorization Code Flow with PKCE (Proof Key for Code Exchange) to securely authenticate users without exposing client secrets in the frontend code.</p>
+
+                <pre><code>// Server-side authentication route
+app.get('/login', (req, res) => {
+  const state = generateRandomString(16);
+  const scope = 'user-read-private user-read-email user-top-read user-read-recently-played playlist-modify-public';
+
+  res.redirect('https://accounts.spotify.com/authorize?' +
+    querystring.stringify({
+      response_type: 'code',
+      client_id: CLIENT_ID,
+      scope: scope,
+      redirect_uri: REDIRECT_URI,
+      state: state
+    }));
+});</code></pre>
+
+                <h3>Data Visualization</h3>
+                <p>The app uses Chart.js to create interactive visualizations of audio features like danceability, energy, and valence for the user's top tracks.</p>
+
+                <h3>Responsive Design</h3>
+                <p>The UI is fully responsive, adapting to different screen sizes while maintaining a consistent and intuitive user experience. This was achieved using CSS Grid, Flexbox, and media queries.</p>
+
+                <h2>Challenges and Solutions</h2>
+                <p>One of the main challenges was handling rate limiting from the Spotify API. To solve this, I implemented a caching layer that stores API responses for a short period, reducing the number of requests made to the API.</p>
+
+                <p>Another challenge was creating an intuitive UI for exploring complex data. I solved this by designing a tabbed interface that separates different types of data (artists, tracks, playlists) and using consistent visual cues to help users understand the relationships between different pieces of data.</p>
+
+                <h2>Results and Impact</h2>
+                <p>The application has been well-received by users, with over 1,000 monthly active users. It has been featured in several web development newsletters and has received positive feedback for its clean design and useful features.</p>
+
+                <h2>Lessons Learned</h2>
+                <p>This project taught me a lot about working with third-party APIs, handling authentication securely, and designing intuitive interfaces for complex data. I also learned the importance of error handling and providing clear feedback to users when things go wrong.</p>
+
+                <p>If I were to start this project again, I would implement server-side rendering to improve initial load times and SEO. I would also add more customization options for the recommendations algorithm.</p>
+            </article>
+
+            <div class="next-projects">
+                <h3>Other Projects</h3>
+                <div class="project-links">
+                    <a href="halcyon-theme.html" class="project-link">Halcyon Theme</a>
+                    <a href="spotify-profile.html" class="project-link">Spotify Profile</a>
+                </div>
+            </div>
+        </main>
+
+        <!-- Footer -->
+        <footer>
+            <div class="footer-content">
+                <div class="footer-left">
+                    <p>Designed & Built by Brittany Chiang</p>
+                </div>
+                <div class="footer-right">
+                    <ul class="social-links">
+                        <li><a href="#" aria-label="GitHub"><i class="fab fa-github"></i></a></li>
+                        <li><a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a></li>
+                        <li><a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a></li>
+                        <li><a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+        </footer>
+    </div>
+</body>
+</html>

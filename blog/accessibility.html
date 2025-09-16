@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Accessibility in Web Development: Beyond the Basics | Brittany Chiang</title>
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../blog.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Navigation -->
+        <header>
+            <nav>
+                <a href="../index.html" class="logo">B</a>
+                <ul class="nav-links">
+                    <li><a href="../index.html#about">About</a></li>
+                    <li><a href="../index.html#experience">Experience</a></li>
+                    <li><a href="../index.html#projects">Projects</a></li>
+                    <li><a href="../index.html#writing">Writing</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <!-- Blog Post Content -->
+        <main class="blog-content">
+            <div class="blog-header">
+                <div class="blog-date">March 22, 2024</div>
+                <h1>Accessibility in Web Development: Beyond the Basics</h1>
+                <div class="blog-meta">
+                    <span class="reading-time">8 min read</span>
+                    <span class="category">Accessibility</span>
+                </div>
+            </div>
+
+            <article>
+                <p class="intro">Web accessibility is more than just adding alt tags to images. In this article, I explore advanced accessibility techniques that can make your web applications truly inclusive for all users, regardless of their abilities.</p>
+
+                <h2>Moving Beyond Basic Accessibility</h2>
+                <p>While most developers are familiar with basic accessibility practices like adding alt text to images and using semantic HTML, creating truly accessible websites requires a deeper understanding and implementation of ARIA attributes, keyboard navigation, and focus management.</p>
+
+                <h2>ARIA Roles and Attributes</h2>
+                <p>ARIA (Accessible Rich Internet Applications) provides a way to make web content and applications more accessible to people with disabilities. Here are some advanced ARIA techniques:</p>
+
+                <pre><code><!-- Example of a custom dropdown menu with ARIA -->
+&lt;div class="dropdown" role="combobox" aria-expanded="false" aria-haspopup="listbox" aria-controls="dropdown-list"&gt;
+  &lt;button id="dropdown-button" aria-label="Select an option"&gt;Select&lt;/button&gt;
+  &lt;ul id="dropdown-list" role="listbox" aria-labelledby="dropdown-button" hidden&gt;
+    &lt;li role="option" id="option1" aria-selected="false"&gt;Option 1&lt;/li&gt;
+    &lt;li role="option" id="option2" aria-selected="false"&gt;Option 2&lt;/li&gt;
+    &lt;li role="option" id="option3" aria-selected="false"&gt;Option 3&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/div&gt;</code></pre>
+
+                <p>This example shows how to create an accessible custom dropdown menu using ARIA roles and attributes. The <code>role</code> attributes define what each element represents, while the <code>aria-*</code> attributes provide additional information about the state and relationships between elements.</p>
+
+                <h2>Focus Management</h2>
+                <p>Proper focus management is crucial for keyboard users. When implementing interactive components like modals, you need to trap focus within the modal when it's open and restore focus to the triggering element when it's closed.</p>
+
+                <pre><code>// Example of focus trap in a modal
+function trapFocus(element) {
+  const focusableElements = element.querySelectorAll(
+    'a[href], button, textarea, input[type="text"], input[type="checkbox"], select'
+  );
+  
+  const firstElement = focusableElements[0];
+  const lastElement = focusableElements[focusableElements.length - 1];
+  
+  // Set initial focus
+  firstElement.focus();
+  
+  element.addEventListener('keydown', function(e) {
+    // Handle Tab key
+    if (e.key === 'Tab') {
+      // Shift + Tab
+      if (e.shiftKey) {
+        if (document.activeElement === firstElement) {
+          lastElement.focus();
+          e.preventDefault();
+        }
+      // Tab
+      } else {
+        if (document.activeElement === lastElement) {
+          firstElement.focus();
+          e.preventDefault();
+        }
+      }
+    }
+  });
+}</code></pre>
+
+                <h2>Accessible Animations</h2>
+                <p>Animations can enhance user experience, but they can also cause issues for users with vestibular disorders or motion sensitivity. Always provide a way for users to disable animations:</p>
+
+                <pre><code>@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}</code></pre>
+
+                <p>This CSS media query respects the user's system preference for reduced motion and disables animations accordingly.</p>
+
+                <h2>Testing for Accessibility</h2>
+                <p>Automated testing tools like Lighthouse and axe can help identify accessibility issues, but they can't catch everything. Manual testing with screen readers and keyboard navigation is essential.</p>
+
+                <p>I recommend using NVDA or VoiceOver to test your websites, as they are commonly used by people with visual impairments. Additionally, try navigating your website using only the keyboard to ensure all interactive elements are accessible.</p>
+
+                <h2>Conclusion</h2>
+                <p>Accessibility is not a checkbox to tick off; it's an ongoing process of learning and improvement. By implementing these advanced techniques, you can create web experiences that are truly inclusive for all users.</p>
+
+                <p>Remember, accessible websites benefit everyone, not just users with disabilities. They are often more usable, have better SEO, and reach a wider audience.</p>
+            </article>
+
+            <div class="blog-footer">
+                <div class="tags">
+                    <span class="tag">Accessibility</span>
+                    <span class="tag">ARIA</span>
+                    <span class="tag">Web Development</span>
+                </div>
+                <div class="share">
+                    <span>Share this article:</span>
+                    <a href="#" aria-label="Share on Twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="#" aria-label="Share on LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+
+            <div class="more-posts">
+                <h3>More Articles</h3>
+                <div class="post-links">
+                    <a href="react-hooks.html" class="post-link">Demystifying React Hooks: A Comprehensive Guide</a>
+                    <a href="css-future.html" class="post-link">The Future of CSS: What's Coming in 2025 and Beyond</a>
+                </div>
+            </div>
+        </main>
+
+        <!-- Footer -->
+        <footer>
+            <div class="footer-content">
+                <div class="footer-left">
+                    <p>Designed & Built by Brittany Chiang</p>
+                </div>
+                <div class="footer-right">
+                    <ul class="social-links">
+                        <li><a href="#" aria-label="GitHub"><i class="fab fa-github"></i></a></li>
+                        <li><a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a></li>
+                        <li><a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a></li>
+                        <li><a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+        </footer>
+    </div>
+</body>
+</html>

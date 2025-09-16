@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Future of CSS: What's Coming in 2025 and Beyond | Brittany Chiang</title>
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../blog.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Navigation -->
+        <header>
+            <nav>
+                <a href="../index.html" class="logo">B</a>
+                <ul class="nav-links">
+                    <li><a href="../index.html#about">About</a></li>
+                    <li><a href="../index.html#experience">Experience</a></li>
+                    <li><a href="../index.html#projects">Projects</a></li>
+                    <li><a href="../index.html#writing">Writing</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <!-- Blog Post Content -->
+        <main class="blog-content">
+            <div class="blog-header">
+                <div class="blog-date">April 5, 2024</div>
+                <h1>The Future of CSS: What's Coming in 2025 and Beyond</h1>
+                <div class="blog-meta">
+                    <span class="reading-time">7 min read</span>
+                    <span class="category">CSS</span>
+                </div>
+            </div>
+
+            <article>
+                <p class="intro">CSS is evolving at a rapid pace, with new features and capabilities being added regularly. In this article, I explore the exciting new CSS features that are coming in the near future and how they will change the way we build websites.</p>
+
+                <h2>Container Queries: Responsive Design Revolution</h2>
+                <p>Container queries are perhaps the most anticipated feature in CSS. Unlike media queries that are based on the viewport size, container queries allow you to apply styles based on the size of a parent container.</p>
+
+                <pre><code>.card-container {
+  container-type: inline-size;
+  container-name: card;
+}
+
+@container card (min-width: 400px) {
+  .card {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+  }
+}
+
+@container card (max-width: 399px) {
+  .card {
+    display: flex;
+    flex-direction: column;
+  }
+}</code></pre>
+
+                <p>This will revolutionize component-based design systems, allowing components to adapt to their container rather than the viewport, making truly reusable UI components possible.</p>
+
+                <h2>Cascade Layers: Better Specificity Control</h2>
+                <p>CSS Cascade Layers provide a way to group styles and control their precedence in the cascade, regardless of specificity. This helps manage large codebases and third-party styles more effectively.</p>
+
+                <pre><code>@layer framework, theme, components, utilities;
+
+@layer framework {
+  /* Framework styles */
+}
+
+@layer components {
+  /* Component styles */
+}
+
+@layer utilities {
+  /* Utility styles */
+}</code></pre>
+
+                <p>With cascade layers, you can ensure that utility styles always win over component styles, regardless of their specificity, making your CSS more predictable and maintainable.</p>
+
+                <h2>Subgrid: Better Nested Grids</h2>
+                <p>Subgrid allows nested grid items to participate in the parent grid, making complex layouts easier to create and maintain.</p>
+
+                <pre><code>.parent-grid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 20px;
+}
+
+.nested-grid {
+  grid-column: span 6;
+  display: grid;
+  grid-template-columns: subgrid;
+}</code></pre>
+
+                <p>With subgrid, the nested grid's columns will align perfectly with the parent grid's columns, making it much easier to create complex, aligned layouts.</p>
+
+                <h2>Scroll-Linked Animations</h2>
+                <p>The new scroll-driven animations API allows you to create animations that are linked to the scroll position, opening up new possibilities for interactive storytelling and engaging user experiences.</p>
+
+                <pre><code>@keyframes parallax {
+  from { transform: translateY(0); }
+  to { transform: translateY(-50%); }
+}
+
+.parallax-element {
+  animation: parallax linear;
+  animation-timeline: scroll();
+}</code></pre>
+
+                <p>This code creates a parallax effect that's tied to the scroll position, without any JavaScript required.</p>
+
+                <h2>Nesting</h2>
+                <p>CSS nesting, inspired by preprocessors like Sass, is coming to native CSS, allowing you to write more concise and maintainable styles.</p>
+
+                <pre><code>.card {
+  background: white;
+  border-radius: 8px;
+  
+  & .card-header {
+    padding: 16px;
+    
+    & h2 {
+      margin: 0;
+    }
+  }
+  
+  & .card-body {
+    padding: 16px;
+  }
+}</code></pre>
+
+                <p>This nesting syntax makes it easier to see the relationship between elements and reduces repetition in your CSS.</p>
+
+                <h2>Conclusion</h2>
+                <p>The future of CSS is bright, with many exciting features on the horizon. These new capabilities will make it easier to create complex, responsive, and maintainable designs without relying on JavaScript or preprocessors.</p>
+
+                <p>As web developers, it's important to stay up-to-date with these emerging technologies and start experimenting with them as they become available in modern browsers.</p>
+            </article>
+
+            <div class="blog-footer">
+                <div class="tags">
+                    <span class="tag">CSS</span>
+                    <span class="tag">Web Development</span>
+                    <span class="tag">Frontend</span>
+                </div>
+                <div class="share">
+                    <span>Share this article:</span>
+                    <a href="#" aria-label="Share on Twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="#" aria-label="Share on LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+
+            <div class="more-posts">
+                <h3>More Articles</h3>
+                <div class="post-links">
+                    <a href="react-hooks.html" class="post-link">Demystifying React Hooks: A Comprehensive Guide</a>
+                    <a href="accessibility.html" class="post-link">Accessibility in Web Development: Beyond the Basics</a>
+                </div>
+            </div>
+        </main>
+
+        <!-- Footer -->
+        <footer>
+            <div class="footer-content">
+                <div class="footer-left">
+                    <p>Designed & Built by Brittany Chiang</p>
+                </div>
+                <div class="footer-right">
+                    <ul class="social-links">
+                        <li><a href="#" aria-label="GitHub"><i class="fab fa-github"></i></a></li>
+                        <li><a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a></li>
+                        <li><a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a></li>
+                        <li><a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+        </footer>
+    </div>
+</body>
+</html>
